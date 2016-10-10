@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+
+import SCons
+
+env = Environment()
+env['CC']  = 'gcc'
+env['CXX'] = 'g++'
+env['AR']  = 'ar'
+
+env['CXXFLAGS']  = [ '-std=c++11' ]
+env['CPPPATH']  = [
+                    '../include',
+                  ]
+
+FILES = [env.Glob('*.cpp')]
+
+TARGET = 'solver'
+
+targetFile = env.Program(target=TARGET, source=FILES)
+Default(targetFile)
+
